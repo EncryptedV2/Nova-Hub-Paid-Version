@@ -1,0 +1,34 @@
+local HttpService = game:GetService("HttpService")
+
+
+local whitelistUrl = "https://raw.githubusercontent.com/your-username/your-repository/main/whitelist.json"
+
+
+local function isPlayerWhitelisted(player)
+    local success, response = pcall(function()
+        return HttpService:GetAsync(whitelistUrl)
+    end)
+
+    if success then
+        local whitelistData = HttpService:JSONDecode(response)
+        local whitelistedPlayers = whitelistData.whitelisted_players
+
+        for _, username in ipairs(whitelistedPlayers) do
+            if username == player.Name then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+
+
+local player = game.Players.LocalPlayer
+
+if isPlayerWhitelisted(player) then
+    print("Hello world")
+else
+    print("You are not whitelisted.")
+end
