@@ -64,6 +64,176 @@ AutoFarm:AddLabel("Area Farming (More Coming Soon)")
             end
         end)
 
+local folderJungleFarming = AutoFarm:AddFolder("Jungle Farming")
+local folderMuscleKingFarming = AutoFarm:AddFolder("Muscle King Farming")
+local folderLegendGymFarming = AutoFarm:AddFolder("Legend Gym Farming")
+
+local function AutoMuscleKingLift(Value)
+    getgenv().AutoMuscleKingLift = Value
+
+    if Value then
+        task.spawn(function()
+            while getgenv().AutoMuscleKingLift do
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    character.HumanoidRootPart.CFrame = CFrame.new(-8772.97266, 24.4272194, -5638.37402)
+                    task.wait(0.3)
+                    
+                    local args = {
+                        [1] = "useMachine",
+                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Muscle King Lift"):WaitForChild("interactSeat")
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
+                end
+
+                if not getgenv().AutoMuscleKingLift then break end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+local function AutoMuscleKingBoulder(Value)
+    getgenv().AutoMuscleKingBoulder = Value
+
+    if Value then
+        task.spawn(function()
+            while getgenv().AutoMuscleKingBoulder do
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    character.HumanoidRootPart.CFrame = CFrame.new(-8986.61621, 30.0510483, -5647.14404)
+                    task.wait(0.3)
+                    
+                    local args = {
+                        [1] = "useMachine",
+                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("King Boulder"):WaitForChild("interactSeat")
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
+                end
+
+                if not getgenv().AutoMuscleKingBoulder then break end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+local function AutoMuscleKingSquat(Value)
+    getgenv().AutoMuscleKingSquat = Value
+
+    if Value then
+        task.spawn(function()
+            while getgenv().AutoMuscleKingSquat do
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    character.HumanoidRootPart.CFrame = CFrame.new(-8760.77051, 63.8689613, -6088.8042)
+                    task.wait(0.3)
+                    
+                    local args = {
+                        [1] = "useMachine",
+                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Muscle King Squat"):WaitForChild("interactSeat")
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
+                end
+
+                if not getgenv().AutoMuscleKingSquat then break end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+local function AutoMuscleKingBench(Value)
+    getgenv().AutoMuscleKingBench = Value
+
+    if Value then
+        task.spawn(function()
+            while getgenv().AutoMuscleKingBench do
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    character.HumanoidRootPart.CFrame = CFrame.new(-8582.58887, 41.7540054, -6051.01318)
+                    task.wait(0.3)
+                    
+                    local args = {
+                        [1] = "useMachine",
+                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Muscle King Bench"):WaitForChild("interactSeat")
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
+                end
+
+                if not getgenv().AutoMuscleKingBench then break end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+local function AutoLegendLift(Value)
+    getgenv().AutoLegendLift = Value
+
+    if Value then
+        task.spawn(function()
+            while getgenv().AutoLegendLift do
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    character.HumanoidRootPart.CFrame = CFrame.new(4551.51514, 997.727234, -4018.90186)
+                    task.wait(0.3)
+                    
+                    local args = {
+                        [1] = "useMachine",
+                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Legends Lift"):WaitForChild("interactSeat")
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
+                end
+
+                if not getgenv().AutoLegendLift then break end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+local function AutoLegendPress(Value)
+    getgenv().AutoLegendPress = Value
+
+    if Value then
+        task.spawn(function()
+            while getgenv().AutoLegendPress do
+                local player = game.Players.LocalPlayer
+                local character = player.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    character.HumanoidRootPart.CFrame = CFrame.new(4100.08154, 1016.20416, -3800.4187)
+                    task.wait(0.3)
+                    
+                    local args = {
+                        [1] = "useMachine",
+                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Legends Press"):WaitForChild("interactSeat")
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
+                end
+
+                if not getgenv().AutoLegendPress then break end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+folderMuscleKingFarming:AddToggle("Auto Muscle King Lift", AutoMuscleKingLift)
+folderMuscleKingFarming:AddToggle("Auto Muscle King Boulder", AutoMuscleKingBoulder)
+folderMuscleKingFarming:AddToggle("Auto Muscle King Squat", AutoMuscleKingSquat)
+folderMuscleKingFarming:AddToggle("Auto Muscle King Bench", AutoMuscleKingBench)
+
+folderLegendGymFarming:AddToggle("Auto Legend Lift", AutoLegendLift)
+folderLegendGymFarming:AddToggle("Auto Legend Press", AutoLegendPress)
+
+AutoFarm:AddLabel("Reps")
+
         -- Auto Rep Toggle
         local autoRepToggle = false
         AutoFarm:AddSwitch("Auto Rep", function(State)
