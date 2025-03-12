@@ -1,37 +1,40 @@
+
 local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+
 local whitelistUrl = "https://raw.githubusercontent.com/EncryptedV2/Nova-Hub-Paid-Version/refs/heads/main/Whitelist"
 
-local function isPlayerWhitelisted(player)
+local function fetchWhitelist()
     local success, response = pcall(function()
         return HttpService:GetAsync(whitelistUrl)
     end)
 
     if success then
-        local whitelistScript = response
-        local chunk, err = loadstring(whitelistScript)
-        
-        if chunk then
-            local whitelistPlayers = chunk()  -- Execute the Lua code to get the whitelist
-
-            for _, username in ipairs(whitelistPlayers) do
-                if username == player.Name then
-                    return true
-                end
-            end
-        else
-            warn("Error loading whitelist: " .. err)
-        end
+        return HttpService:JSONDecode(response)
     else
-        warn("Error fetching whitelist: " .. response)
+        warn("Failed to fetch whitelist: " .. response)
+        return {}
     end
+end
 
+
+local function isPlayerWhitelisted(player, whitelist)
+    for _, playerName in ipairs(whitelist) do
+        if player.Name == playerName then
+            return true
+        end
+    end
     return false
 end
 
-local player = game.Players.LocalPlayer
 
-if isPlayerWhitelisted(player) then
-    print("Hello world")
-else
-    print("You are not whitelisted.")
-end
+local whitelist = fetchWhitelist()
+
+
+Players.PlayerAdded:Connect(function(player)
+    if isPlayerWhitelisted(player, whitelist) then
+        print("Hello world")
+    else
+        print(player.Name .. " is not whitelisted.")
+    end
+end)
