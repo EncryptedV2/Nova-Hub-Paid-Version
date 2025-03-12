@@ -12,15 +12,15 @@ local Window = Library:CreateWindow{
     Acrylic = true,
     Theme = "VSC Dark High Contrast",
     MinimizeKey = Enum.KeyCode.RightControl
-    }
+}
 
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
-    AutoFarm = Window:AddTab({ Title = "Auto Farm", Icon = "" })
+    AutoFarm = Window:AddTab({ Title = "Auto Farm", Icon = "" }),
     OpThings = Window:AddTab({ Title = "Op Things", Icon = "" }),
-    Killer = Window:AddTab({ Title = "Killer", Icon = "sword" })
+    Killer = Window:AddTab({ Title = "Killer", Icon = "sword" }),
     Rebirth = Window:AddTab({ Title = "Rebirth", Icon = "rotate-ccw" }),
-    Eggs = Window:AddTab({ Title = "Eggs", Icon = "Egg" })
+    Eggs = Window:AddTab({ Title = "Eggs", Icon = "Egg" }),
     Stats = Window:AddTab({ Title = "Stats", Icon = "" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "settings" })
 }
