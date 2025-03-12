@@ -1,1 +1,1 @@
-# Nova-Hub-Paid-Version
+Nova Hub Paid Version Script
