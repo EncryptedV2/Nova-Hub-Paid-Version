@@ -1,33 +1,19 @@
 local function getObfuscatedUrl()
-    local protocol = string.char(104, 116, 116, 112, 115, 58, 47, 47)
-    local domainPart1 = string.char(114, 97, 119)
-    local domainPart2 = string.char(103, 105, 116, 104, 117, 98, 117, 115, 101, 114, 116, 111, 110, 46, 99, 111, 109)
-    local pathPart1 = string.char(69, 110, 99, 114, 121, 112, 116, 101, 100, 32, 86, 50)
-    local pathPart2 = string.char(78, 111, 118, 97, 45, 72, 117, 98, 45, 80, 97, 105, 100, 45, 86, 101, 114, 115, 105, 111, 110)
-    local pathPart3 = string.char(114, 101, 102, 115)
-    local pathPart4 = string.char(104, 101, 97, 100, 115)
-    local pathPart5 = string.char(109, 97, 105, 110)
-    local pathPart6 = string.char(76, 105, 98, 114, 97, 114, 121)
-
-    local fullUrl = protocol .. domainPart1 .. string.char(46) .. domainPart2 .. "/" .. pathPart1 .. "/" .. pathPart2 .. "/" .. pathPart3 .. "/" .. pathPart4 .. "/" .. pathPart5 .. "/" .. pathPart6
-
-    return fullUrl
+    return table.concat({
+        string.char(104, 116, 116, 112, 115, 58, 47, 47),
+        string.char(114, 97, 119), ".",
+        string.char(103, 105, 116, 104, 117, 98, 117, 115, 101, 114, 116, 111, 110, 46, 99, 111, 109),
+        "/", string.char(69, 110, 99, 114, 121, 112, 116, 101, 100, 32, 86, 50),
+        "/", string.char(78, 111, 118, 97, 45, 72, 117, 98, 45, 80, 97, 105, 100, 45, 86, 101, 114, 115, 105, 111, 110),
+        "/", string.char(114, 101, 102, 115),
+        "/", string.char(104, 101, 97, 100, 115),
+        "/", string.char(109, 97, 105, 110),
+        "/", string.char(76, 105, 98, 114, 97, 114, 121)
+    })
 end
 
-local library = loadstring(game:HttpGet(function()
-    local protocol = string.char(104, 116, 116, 112, 115, 58, 47, 47)
-    local domainPart1 = string.char(114, 97, 119)
-    local domainPart2 = string.char(103, 105, 116, 104, 117, 98, 117, 115, 101, 114, 116, 111, 110, 46, 99, 111, 109)
-    local pathPart1 = string.char(69, 110, 99, 114, 121, 112, 116, 101, 100, 32, 86, 50)
-    local pathPart2 = string.char(78, 111, 118, 97, 45, 72, 117, 98, 45, 80, 97, 105, 100, 45, 86, 101, 114, 115, 105, 111, 110)
-    local pathPart3 = string.char(114, 101, 102, 115)
-    local pathPart4 = string.char(104, 101, 97, 100, 115)
-    local pathPart5 = string.char(109, 97, 105, 110)
-    local pathPart6 = string.char(76, 105, 98, 114, 97, 114, 121)
-
-    local fullUrl = protocol .. domainPart1 .. string.char(46) .. domainPart2 .. "/" .. pathPart1 .. "/" .. pathPart2 .. "/" .. pathPart3 .. "/" .. pathPart4 .. "/" .. pathPart5 .. "/" .. pathPart6
-    return fullUrl
-end(), true))()
+local url = getObfuscatedUrl()
+local library = loadstring(game:HttpGet(url, true))()
 
 local window = library:AddWindow("Nova Hub", {
     main_color = Color3.fromRGB(0, 0, 0), -- Main Color
