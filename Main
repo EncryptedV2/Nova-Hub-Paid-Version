@@ -1,0 +1,27 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library//main/Library", true))()
+
+local window = library:AddWindow("Nova Hub", {
+	main_color = Color3.fromRGB(41, 74, 122), -- Color
+	min_size = Vector2.new(600, 550), -- Size of the gui
+	can_resize = true, -- true or false
+})
+
+local Main = window:AddTab("Main")
+
+local AutoFarm = window:AddTab("Auto Farm")
+
+local Rebirth = window:AddTab("Rebirth")
+
+local Killer = window:AddTab("Killer")
+
+local Crystal = window:AddTab("Crystal")
+
+local OpThings = window:AddTab("Op Things")
+
+local Stats = window:AddTab("Stats")
+
+local ViewStats = window:AddTab("View Stats")
+
+local Misc = window:AddTab("Misc")
+
+local Credit = window:AddTab("Credit")
