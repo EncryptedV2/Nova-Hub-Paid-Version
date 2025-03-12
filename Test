@@ -1,7 +1,7 @@
 local HttpService = game:GetService("HttpService")
 
 
-local whitelistUrl = "https://raw.githubusercontent.com/your-username/your-repository/main/whitelist.json"
+local whitelistUrl = "https://raw.githubusercontent.com/EncryptedV2/Nova-Hub-Paid-Version/refs/heads/main/Whitelist"
 
 
 local function isPlayerWhitelisted(player)
