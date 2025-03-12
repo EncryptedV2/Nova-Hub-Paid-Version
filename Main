@@ -1,9 +1,9 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library//main/Library", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library/main/Library", true))()
 
 local window = library:AddWindow("Nova Hub", {
-	main_color = Color3.fromRGB(247, 241, 141), -- Color
-	min_size = Vector2.new(610, 550), -- Size of the gui
-	can_resize = false, -- true or false
+    main_color = Color3.fromRGB(247, 241, 141), -- Main Color
+    min_size = Vector2.new(610, 550), -- Size of the GUI
+    can_resize = false, -- Allow resizing
 })
 
 local Main = window:AddTab("Main")
@@ -15,309 +15,199 @@ Main:AddButton("Copy Link", function()
 end)
 
 local AutoFarm = window:AddTab("Auto Farm")
-
 AutoFarm:AddLabel("Area Farming (More Coming Soon)")
-        local folder3 = AutoFarm:AddFolder("Jungle Farming")
 
-        -- Auto Jungle Bench Toggle
-        local jungleBenchToggle = false
-        folder3:AddSwitch("Auto Jungle Bench", function(State)
-            jungleBenchToggle = State
-            if State then
-                task.spawn(function()
-                    while jungleBenchToggle do
-                        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8629.88086, 64.8842468, 1855.03467))
-                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bench"].interactSeat)
-                        task.wait(0.1)
-                    end
-                end)
+local folder3 = AutoFarm:AddFolder("Jungle Farming")
+
+-- Auto Jungle Bench Toggle
+local jungleBenchToggle = false
+folder3:AddSwitch("Auto Jungle Bench", function(State)
+    jungleBenchToggle = State
+    if State then
+        task.spawn(function()
+            while jungleBenchToggle do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8629.88086, 64.8842468, 1855.03467))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bench"].interactSeat)
+                task.wait(0.1)
             end
         end)
+    end
+end)
 
-        -- Auto Jungle Bar Lift Toggle
-        local jungleBarLiftToggle = false
-        folder3:AddSwitch("Auto Jungle Bar Lift", function(State)
-            jungleBarLiftToggle = State
-            if State then
-                task.spawn(function()
-                    while jungleBarLiftToggle do
-                        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8678.05566, 14.5030098, 2089.25977))
-                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bar Lift"].interactSeat)
-                        task.wait(0.1)
-                    end
-                end)
+-- Auto Jungle Bar Lift Toggle
+local jungleBarLiftToggle = false
+folder3:AddSwitch("Auto Jungle Bar Lift", function(State)
+    jungleBarLiftToggle = State
+    if State then
+        task.spawn(function()
+            while jungleBarLiftToggle do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8678.05566, 14.5030098, 2089.25977))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bar Lift"].interactSeat)
+                task.wait(0.1)
             end
         end)
+    end
+end)
 
-        -- Auto Jungle Squat Toggle
-        local jungleSquatToggle = false
-        folder3:AddSwitch("Auto Jungle Squat", function(State)
-            jungleSquatToggle = State
-            if State then
-                task.spawn(function()
-                    while jungleSquatToggle do
-                        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8374.25586, 34.5933418, 2932.44995))
-                        game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Squat"].interactSeat)
-                        task.wait(0.1)
-                    end
-                end)
+-- Auto Jungle Squat Toggle
+local jungleSquatToggle = false
+folder3:AddSwitch("Auto Jungle Squat", function(State)
+    jungleSquatToggle = State
+    if State then
+        task.spawn(function()
+            while jungleSquatToggle do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8374.25586, 34.5933418, 2932.44995))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Squat"].interactSeat)
+                task.wait(0.1)
             end
         end)
+    end
+end)
 
-local folderJungleFarming = AutoFarm:AddFolder("Jungle Farming")
 local folderMuscleKingFarming = AutoFarm:AddFolder("Muscle King Farming")
 local folderLegendGymFarming = AutoFarm:AddFolder("Legend Gym Farming")
 
-local function AutoMuscleKingLift(Value)
-    getgenv().AutoMuscleKingLift = Value
-
-    if Value then
-        task.spawn(function()
-            while getgenv().AutoMuscleKingLift do
-                local player = game.Players.LocalPlayer
-                local character = player.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    character.HumanoidRootPart.CFrame = CFrame.new(-8772.97266, 24.4272194, -5638.37402)
-                    task.wait(0.3)
-                    
-                    local args = {
-                        [1] = "useMachine",
-                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Muscle King Lift"):WaitForChild("interactSeat")
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                end
-
-                if not getgenv().AutoMuscleKingLift then break end
-                task.wait(0.05)
-            end
-        end)
-    end
-end
-
-local function AutoMuscleKingBoulder(Value)
-    getgenv().AutoMuscleKingBoulder = Value
-
-    if Value then
-        task.spawn(function()
-            while getgenv().AutoMuscleKingBoulder do
-                local player = game.Players.LocalPlayer
-                local character = player.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    character.HumanoidRootPart.CFrame = CFrame.new(-8986.61621, 30.0510483, -5647.14404)
-                    task.wait(0.3)
-                    
-                    local args = {
-                        [1] = "useMachine",
-                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("King Boulder"):WaitForChild("interactSeat")
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                end
-
-                if not getgenv().AutoMuscleKingBoulder then break end
-                task.wait(0.05)
-            end
-        end)
-    end
-end
-
-local function AutoMuscleKingSquat(Value)
-    getgenv().AutoMuscleKingSquat = Value
-
-    if Value then
-        task.spawn(function()
-            while getgenv().AutoMuscleKingSquat do
-                local player = game.Players.LocalPlayer
-                local character = player.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    character.HumanoidRootPart.CFrame = CFrame.new(-8760.77051, 63.8689613, -6088.8042)
-                    task.wait(0.3)
-                    
-                    local args = {
-                        [1] = "useMachine",
-                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Muscle King Squat"):WaitForChild("interactSeat")
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                end
-
-                if not getgenv().AutoMuscleKingSquat then break end
-                task.wait(0.05)
-            end
-        end)
-    end
-end
-
-local function AutoMuscleKingBench(Value)
-    getgenv().AutoMuscleKingBench = Value
-
-    if Value then
-        task.spawn(function()
-            while getgenv().AutoMuscleKingBench do
-                local player = game.Players.LocalPlayer
-                local character = player.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    character.HumanoidRootPart.CFrame = CFrame.new(-8582.58887, 41.7540054, -6051.01318)
-                    task.wait(0.3)
-                    
-                    local args = {
-                        [1] = "useMachine",
-                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Muscle King Bench"):WaitForChild("interactSeat")
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                end
-
-                if not getgenv().AutoMuscleKingBench then break end
-                task.wait(0.05)
-            end
-        end)
-    end
-end
-
-local function AutoLegendLift(Value)
-    getgenv().AutoLegendLift = Value
-
-    if Value then
-        task.spawn(function()
-            while getgenv().AutoLegendLift do
-                local player = game.Players.LocalPlayer
-                local character = player.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    character.HumanoidRootPart.CFrame = CFrame.new(4551.51514, 997.727234, -4018.90186)
-                    task.wait(0.3)
-                    
-                    local args = {
-                        [1] = "useMachine",
-                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Legends Lift"):WaitForChild("interactSeat")
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                end
-
-                if not getgenv().AutoLegendLift then break end
-                task.wait(0.05)
-            end
-        end)
-    end
-end
-
-local function AutoLegendPress(Value)
-    getgenv().AutoLegendPress = Value
-
-    if Value then
-        task.spawn(function()
-            while getgenv().AutoLegendPress do
-                local player = game.Players.LocalPlayer
-                local character = player.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    character.HumanoidRootPart.CFrame = CFrame.new(4100.08154, 1016.20416, -3800.4187)
-                    task.wait(0.3)
-                    
-                    local args = {
-                        [1] = "useMachine",
-                        [2] = workspace:WaitForChild("machinesFolder"):WaitForChild("Legends Press"):WaitForChild("interactSeat")
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                end
-
-                if not getgenv().AutoLegendPress then break end
-                task.wait(0.05)
-            end
-        end)
-    end
-end
-
-folderMuscleKingFarming:AddToggle("Auto Muscle King Lift", AutoMuscleKingLift)
-folderMuscleKingFarming:AddToggle("Auto Muscle King Boulder", AutoMuscleKingBoulder)
-folderMuscleKingFarming:AddToggle("Auto Muscle King Squat", AutoMuscleKingSquat)
-folderMuscleKingFarming:AddToggle("Auto Muscle King Bench", AutoMuscleKingBench)
-
-folderLegendGymFarming:AddToggle("Auto Legend Lift", AutoLegendLift)
-folderLegendGymFarming:AddToggle("Auto Legend Press", AutoLegendPress)
-
-AutoFarm:AddLabel("Reps")
-
-        -- Auto Rep Toggle
-        local autoRepToggle = false
-        AutoFarm:AddSwitch("Auto Rep", function(State)
-            autoRepToggle = State
-            if State then
-                task.spawn(function()
-                    while autoRepToggle do
-                        game:GetService("Players").LocalPlayer:WaitForChild("muscleEvent"):FireServer("rep")
-                        task.wait(0.1)
+-- Muscle King functions
+local function createMuscleKingFunction(name, position)
+    return function(Value)
+        getgenv()[name] = Value
+        if Value then
+            task.spawn(function()
+                while getgenv()[name] do
+                    local player = game.Players.LocalPlayer
+                    local character = player.Character
+                    if character and character:FindFirstChild("HumanoidRootPart") then
+                        character.HumanoidRootPart.CFrame = CFrame.new(position)
+                        task.wait(0.3)
+                        local args = {
+                            [1] = "useMachine",
+                            [2] = workspace:WaitForChild("machinesFolder"):WaitForChild(name):WaitForChild("interactSeat")
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
                     end
-                end)
-            end
-        end)
+                    task.wait(0.05)
+                end
+            end)
+        end
+    end
+end
 
-        -- Tools section
-        AutoFarm:AddLabel("Tools")
-        
-        -- Auto Equip Weight Toggle
-        local equipWeightToggle = false
-        AutoFarm:AddSwitch("Auto Equip Weight", function(State)
-            equipWeightToggle = State
-            if State then
-                task.spawn(function()
-                    while equipWeightToggle do
-                        local weightTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
-                        if weightTool then
-                            weightTool.Parent = game.Players.LocalPlayer.Character
-                        end
-                        task.wait(0.1)
-                    end
-                end)
-            end
-        end)
+folderMuscleKingFarming:AddToggle("Auto Muscle King Lift", createMuscleKingFunction("Muscle King Lift", Vector3.new(-8772.97266, 24.4272194, -5638.37402)))
+folderMuscleKingFarming:AddToggle("Auto Muscle King Boulder", createMuscleKingFunction("King Boulder", Vector3.new(-8986.61621, 30.0510483, -5647.14404)))
+folderMuscleKingFarming:AddToggle("Auto Muscle King Squat", createMuscleKingFunction("Muscle King Squat", Vector3.new(-8760.77051, 63.8689613, -6088.8042)))
+folderMuscleKingFarming:AddToggle("Auto Muscle King Bench", createMuscleKingFunction("Muscle King Bench", Vector3.new(-8582.58887, 41.7540054, -6051.01318)))
 
-        -- Auto Equip Pushups Toggle
-        local equipPushupsToggle = false
-        AutoFarm:AddSwitch("Auto Equip Pushups", function(State)
-            equipPushupsToggle = State
-            if State then
-                task.spawn(function()
-                    while equipPushupsToggle do
-                        local pushupsTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Pushups")
-                        if pushupsTool then
-                            pushupsTool.Parent = game.Players.LocalPlayer.Character
-                        end
-                        task.wait(0.1)
+local function createLegendFunction(name, position)
+    return function(Value)
+        getgenv()[name] = Value
+        if Value then
+            task.spawn(function()
+                while getgenv()[name] do
+                    local player = game.Players.LocalPlayer
+                    local character = player.Character
+                    if character and character:FindFirstChild("HumanoidRootPart") then
+                        character.HumanoidRootPart.CFrame = CFrame.new(position)
+                        task.wait(0.3)
+                        local args = {
+                            [1] = "useMachine",
+                            [2] = workspace:WaitForChild("machinesFolder"):WaitForChild(name):WaitForChild("interactSeat")
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
                     end
-                end)
-            end
-        end)
+                    task.wait(0.05)
+                end
+            end)
+        end
+    end
+end
 
-        -- Auto Equip Situps Toggle
-        local equipSitupsToggle = false
-        AutoFarm:AddSwitch("Auto Equip Situps", function(State)
-            equipSitupsToggle = State
-            if State then
-                task.spawn(function()
-                    while equipSitupsToggle do
-                        local situpsTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Situps")
-                        if situpsTool then
-                            situpsTool.Parent = game.Players.LocalPlayer.Character
-                        end
-                        task.wait(0.1)
-                    end
-                end)
-            end
-        end)
+folderLegendGymFarming:AddToggle("Auto Legend Lift", createLegendFunction("Legends Lift", Vector3.new(4551.51514, 997.727234, -4018.90186)))
+folderLegendGymFarming:AddToggle("Auto Legend Press", createLegendFunction("Legends Press", Vector3.new(4100.08154, 1016.20416, -3800.4187)))
 
-        -- Auto Equip Handstand Toggle
-        local equipHandstandToggle = false
-        AutoFarm:AddSwitch("Auto Equip Handstand", function(State)
-            equipHandstandToggle = State
-            if State then
-                task.spawn(function()
-                    while equipHandstandToggle do
-                        local handstandTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Handstand")
-                        if handstandTool then
-                            handstandTool.Parent = game.Players.LocalPlayer.Character
-                        end
-                        task.wait(0.1)
-                    end
-                end)
+-- Auto Rep Toggle
+local autoRepToggle = false
+AutoFarm:AddSwitch("Auto Rep", function(State)
+    autoRepToggle = State
+    if State then
+        task.spawn(function()
+            while autoRepToggle do
+                game:GetService("Players").LocalPlayer:WaitForChild("muscleEvent"):FireServer("rep")
+                task.wait(0.1)
             end
         end)
+    end
+end)
+
+-- Tools section
+AutoFarm:AddLabel("Tools")
+
+-- Auto Equip Weight Toggle
+local equipWeightToggle = false
+AutoFarm:AddSwitch("Auto Equip Weight", function(State)
+    equipWeightToggle = State
+    if State then
+        task.spawn(function()
+            while equipWeightToggle do
+                local weightTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
+                if weightTool then
+                    weightTool.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+-- Auto Equip Pushups Toggle
+local equipPushupsToggle = false
+AutoFarm:AddSwitch("Auto Equip Pushups", function(State)
+    equipPushupsToggle = State
+    if State then
+        task.spawn(function()
+            while equipPushupsToggle do
+                local pushupsTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Pushups")
+                if pushupsTool then
+                    pushupsTool.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+-- Auto Equip Situps Toggle
+local equipSitupsToggle = false
+AutoFarm:AddSwitch("Auto Equip Situps", function(State)
+    equipSitupsToggle = State
+    if State then
+        task.spawn(function()
+            while equipSitupsToggle do
+                local situpsTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Situps")
+                if situpsTool then
+                    situpsTool.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+-- Auto Equip Handstand Toggle
+local equipHandstandToggle = false
+AutoFarm:AddSwitch("Auto Equip Handstand", function(State)
+    equipHandstandToggle = State
+    if State then
+        task.spawn(function()
+            while equipHandstandToggle do
+                local handstandTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Handstand")
+                if handstandTool then
+                    handstandTool.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
 
 local Rebirth = window:AddTab("Rebirth")
 
@@ -358,7 +248,7 @@ Killer:AddSwitch("Auto Kill", function(bool)
                 if rootPart then
                     local rightHand = player.Character and player.Character:FindFirstChild("RightHand")
                     local leftHand = player.Character and player.Character:FindFirstChild("LeftHand")
-
+                    
                     if rightHand and leftHand then
                         firetouchinterest(rightHand, rootPart, 1)
                         firetouchinterest(leftHand, rootPart, 1)
@@ -464,9 +354,7 @@ Killer:AddSwitch("Auto Punch [No Animation]", function(state)
     while autoPunchNoAnim do
         local player = game.Players.LocalPlayer
         local playerName = player.Name
-        local punchTool =
-            player.Backpack:FindFirstChild("Punch") or
-            game.Workspace:FindFirstChild(playerName):FindFirstChild("Punch")
+        local punchTool = player.Backpack:FindFirstChild("Punch") or game.Workspace:FindFirstChild(playerName):FindFirstChild("Punch")
 
         if punchTool then
             if punchTool.Parent ~= game.Workspace:FindFirstChild(playerName) then
@@ -547,13 +435,13 @@ local switch = OpThings:AddSwitch("Fast Rebirth", function(Value)
                 rebirthCost = math.floor(rebirthCost * (1 - (goldenRebirth.Value * 0.1)))
             end
 
-            local machine = findMachine("Jungle Bar Lift")
+            local machine = workspace.machinesFolder:FindFirstChild("Jungle Bar Lift")
             if machine and machine:FindFirstChild("interactSeat") then
                 local character = player.Character
                 if character and character:FindFirstChild("HumanoidRootPart") then
                     character.HumanoidRootPart.CFrame = machine.interactSeat.CFrame * CFrame.new(0, 3, 0)
                     task.wait(0.3)
-                    pressE()
+                    player.muscleEvent:FireServer("rep")
                 end
             end
 
@@ -606,90 +494,90 @@ end)
 local Stats = window:AddTab("Stats")
 
 local function abbreviateNumber(value)
-            if value >= 1e15 then
-                return string.format("%.1fQa", value / 1e15)
-            elseif value >= 1e12 then
-                return string.format("%.1fT", value / 1e12)
-            elseif value >= 1e9 then
-                return string.format("%.1fB", value / 1e9)
-            elseif value >= 1e6 then
-                return string.format("%.1fM", value / 1e6)
-            elseif value >= 1e3 then
-                return string.format("%.1fK", value / 1e3)
-            else
-                return tostring(value)
-            end
-        end
+    if value >= 1e15 then
+        return string.format("%.1fQa", value / 1e15)
+    elseif value >= 1e12 then
+        return string.format("%.1fT", value / 1e12)
+    elseif value >= 1e9 then
+        return string.format("%.1fB", value / 1e9)
+    elseif value >= 1e6 then
+        return string.format("%.1fM", value / 1e6)
+    elseif value >= 1e3 then
+        return string.format("%.1fK", value / 1e3)
+    else
+        return tostring(value)
+    end
+end
 
-        local labels = {
-            TimeSpentLabel = Stats:AddLabel("Time spent in this server: 00:00"),
-            StrengthGainedLabel = Stats:AddLabel("Amount of strength gained in this server: 0"),
-            DurabilityGainedLabel = Stats:AddLabel("Amount of durability gained in this server: 0"),
-            AgilityGainedLabel = Stats:AddLabel("Amount of agility gained in this server: 0"),
-            KillsGainedLabel = Stats:AddLabel("Amount of kills gained in this server: 0"),
-            EvilKarmaGainedLabel = Stats:AddLabel("Amount of Evil Karma gained in this server: 0"),
-            GoodKarmaGainedLabel = Stats:AddLabel("Amount of Good Karma gained in this server: 0")
-        }
+local labels = {
+    TimeSpentLabel = Stats:AddLabel("Time spent in this server: 00:00"),
+    StrengthGainedLabel = Stats:AddLabel("Amount of strength gained in this server: 0"),
+    DurabilityGainedLabel = Stats:AddLabel("Amount of durability gained in this server: 0"),
+    AgilityGainedLabel = Stats:AddLabel("Amount of agility gained in this server: 0"),
+    KillsGainedLabel = Stats:AddLabel("Amount of kills gained in this server: 0"),
+    EvilKarmaGainedLabel = Stats:AddLabel("Amount of Evil Karma gained in this server: 0"),
+    GoodKarmaGainedLabel = Stats:AddLabel("Amount of Good Karma gained in this server: 0")
+}
 
-        local function createMyLabels()
-            local player = game.Players.LocalPlayer
-            if not player then return end
+local function createMyLabels()
+    local player = game.Players.LocalPlayer
+    if not player then return end
 
-            local leaderstats = player:WaitForChild("leaderstats")
-            if not leaderstats then return end
+    local leaderstats = player:WaitForChild("leaderstats")
+    if not leaderstats then return end
 
-            local strengthStat = leaderstats:WaitForChild("Strength")
-            local durabilityStat = player:WaitForChild("Durability")
-            local agilityStat = player:WaitForChild("Agility")
-            local killsStat = leaderstats:WaitForChild("Kills")
-            local evilKarmaStat = player:WaitForChild("evilKarma")
-            local goodKarmaStat = player:WaitForChild("goodKarma")
+    local strengthStat = leaderstats:WaitForChild("Strength")
+    local durabilityStat = player:WaitForChild("Durability")
+    local agilityStat = player:WaitForChild("Agility")
+    local killsStat = leaderstats:WaitForChild("Kills")
+    local evilKarmaStat = player:WaitForChild("evilKarma")
+    local goodKarmaStat = player:WaitForChild("goodKarma")
 
-            local initialStrength = strengthStat.Value or 0
-            local initialDurability = durabilityStat.Value or 0
-            local initialAgility = agilityStat.Value or 0
-            local initialKills = killsStat.Value or 0
-            local initialEvilKarma = evilKarmaStat.Value or 0
-            local initialGoodKarma = goodKarmaStat.Value or 0
+    local initialStrength = strengthStat.Value or 0
+    local initialDurability = durabilityStat.Value or 0
+    local initialAgility = agilityStat.Value or 0
+    local initialKills = killsStat.Value or 0
+    local initialEvilKarma = evilKarmaStat.Value or 0
+    local initialGoodKarma = goodKarmaStat.Value or 0
 
-            local startTime = tick()
+    local startTime = tick()
 
-            local function updateLabels()
-                local strengthGained = strengthStat.Value - initialStrength
-                local durabilityGained = durabilityStat.Value - initialDurability
-                local agilityGained = agilityStat.Value - initialAgility
-                local killsGained = killsStat.Value - initialKills
-                local evilKarmaGained = evilKarmaStat.Value - initialEvilKarma
-                local goodKarmaGained = goodKarmaStat.Value - initialGoodKarma
+    local function updateLabels()
+        local strengthGained = strengthStat.Value - initialStrength
+        local durabilityGained = durabilityStat.Value - initialDurability
+        local agilityGained = agilityStat.Value - initialAgility
+        local killsGained = killsStat.Value - initialKills
+        local evilKarmaGained = evilKarmaStat.Value - initialEvilKarma
+        local goodKarmaGained = goodKarmaStat.Value - initialGoodKarma
 
-                labels.StrengthGainedLabel.Text = "Amount of strength gained in this server: " .. abbreviateNumber(strengthGained)
-                labels.DurabilityGainedLabel.Text = "Amount of durability gained in this server: " .. abbreviateNumber(durabilityGained)
-                labels.AgilityGainedLabel.Text = "Amount of agility gained in this server: " .. abbreviateNumber(agilityGained)
-                labels.KillsGainedLabel.Text = "Amount of kills gained in this server: " .. abbreviateNumber(killsGained)
-                labels.EvilKarmaGainedLabel.Text = "Amount of Evil Karma gained in this server: " .. abbreviateNumber(evilKarmaGained)
-                labels.GoodKarmaGainedLabel.Text = "Amount of Good Karma gained in this server: " .. abbreviateNumber(goodKarmaGained)
-            end
+        labels.StrengthGainedLabel.Text = "Amount of strength gained in this server: " .. abbreviateNumber(strengthGained)
+        labels.DurabilityGainedLabel.Text = "Amount of durability gained in this server: " .. abbreviateNumber(durabilityGained)
+        labels.AgilityGainedLabel.Text = "Amount of agility gained in this server: " .. abbreviateNumber(agilityGained)
+        labels.KillsGainedLabel.Text = "Amount of kills gained in this server: " .. abbreviateNumber(killsGained)
+        labels.EvilKarmaGainedLabel.Text = "Amount of Evil Karma gained in this server: " .. abbreviateNumber(evilKarmaGained)
+        labels.GoodKarmaGainedLabel.Text = "Amount of Good Karma gained in this server: " .. abbreviateNumber(goodKarmaGained)
+    end
 
-            local function updateTimeSpent()
-                local timeSpent = tick() - startTime
-                local minutes = math.floor(timeSpent / 60)
-                local seconds = math.floor(timeSpent % 60)
-                labels.TimeSpentLabel.Text = string.format("Time spent in this server: %02d:%02d", minutes, seconds)
-            end
+    local function updateTimeSpent()
+        local timeSpent = tick() - startTime
+        local minutes = math.floor(timeSpent / 60)
+        local seconds = math.floor(timeSpent % 60)
+        labels.TimeSpentLabel.Text = string.format("Time spent in this server: %02d:%02d", minutes, seconds)
+    end
 
-            strengthStat.Changed:Connect(updateLabels)
-            durabilityStat.Changed:Connect(updateLabels)
-            agilityStat.Changed:Connect(updateLabels)
-            killsStat.Changed:Connect(updateLabels)
-            evilKarmaStat.Changed:Connect(updateLabels)
-            goodKarmaStat.Changed:Connect(updateLabels)
+    strengthStat.Changed:Connect(updateLabels)
+    durabilityStat.Changed:Connect(updateLabels)
+    agilityStat.Changed:Connect(updateLabels)
+    killsStat.Changed:Connect(updateLabels)
+    evilKarmaStat.Changed:Connect(updateLabels)
+    goodKarmaStat.Changed:Connect(updateLabels)
 
-            game:GetService("RunService").Heartbeat:Connect(updateTimeSpent)
+    game:GetService("RunService").Heartbeat:Connect(updateTimeSpent)
 
-            updateLabels()
-        end
+    updateLabels()
+end
 
-        createMyLabels()
+createMyLabels()
 
 local ViewStats = window:AddTab("View Stats")
 
