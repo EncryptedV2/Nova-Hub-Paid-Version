@@ -17,15 +17,15 @@ end)
 local AutoFarm = window:AddTab("Auto Farm")
 AutoFarm:AddLabel("Area Farming (More Coming Soon)")
 
-local folder3 = AutoFarm:AddFolder("Jungle Farming")
+local folderJungleFarming = AutoFarm:AddFolder("Jungle Farming")
 
 -- Auto Jungle Bench Toggle
-local jungleBenchToggle = false
-folder3:AddSwitch("Auto Jungle Bench", function(State)
-    jungleBenchToggle = State
+local autoJungleBench = false
+folderJungleFarming:AddSwitch("Auto Jungle Bench", function(State)
+    autoJungleBench = State
     if State then
         task.spawn(function()
-            while jungleBenchToggle do
+            while autoJungleBench do
                 game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8629.88086, 64.8842468, 1855.03467))
                 game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bench"].interactSeat)
                 task.wait(0.1)
@@ -35,12 +35,12 @@ folder3:AddSwitch("Auto Jungle Bench", function(State)
 end)
 
 -- Auto Jungle Bar Lift Toggle
-local jungleBarLiftToggle = false
-folder3:AddSwitch("Auto Jungle Bar Lift", function(State)
-    jungleBarLiftToggle = State
+local autoJungleBarLift = false
+folderJungleFarming:AddSwitch("Auto Jungle Bar Lift", function(State)
+    autoJungleBarLift = State
     if State then
         task.spawn(function()
-            while jungleBarLiftToggle do
+            while autoJungleBarLift do
                 game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8678.05566, 14.5030098, 2089.25977))
                 game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bar Lift"].interactSeat)
                 task.wait(0.1)
@@ -50,12 +50,12 @@ folder3:AddSwitch("Auto Jungle Bar Lift", function(State)
 end)
 
 -- Auto Jungle Squat Toggle
-local jungleSquatToggle = false
-folder3:AddSwitch("Auto Jungle Squat", function(State)
-    jungleSquatToggle = State
+local autoJungleSquat = false
+folderJungleFarming:AddSwitch("Auto Jungle Squat", function(State)
+    autoJungleSquat = State
     if State then
         task.spawn(function()
-            while jungleSquatToggle do
+            while autoJungleSquat do
                 game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8374.25586, 34.5933418, 2932.44995))
                 game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Squat"].interactSeat)
                 task.wait(0.1)
@@ -65,144 +65,63 @@ folder3:AddSwitch("Auto Jungle Squat", function(State)
 end)
 
 local folderMuscleKingFarming = AutoFarm:AddFolder("Muscle King Farming")
+
+-- Auto Muscle King Lift Toggle
+local autoMuscleKingLift = false
+folderMuscleKingFarming:AddSwitch("Auto Muscle King Lift", function(State)
+    autoMuscleKingLift = State
+    if State then
+        task.spawn(function()
+            while autoMuscleKingLift do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8772.97266, 24.4272194, -5638.37402))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Muscle King Lift"].interactSeat)
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+-- Auto Muscle King Boulder Toggle
+local autoMuscleKingBoulder = false
+folderMuscleKingFarming:AddSwitch("Auto Muscle King Boulder", function(State)
+    autoMuscleKingBoulder = State
+    if State then
+        task.spawn(function()
+            while autoMuscleKingBoulder do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-8986.61621, 30.0510483, -5647.14404))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["King Boulder"].interactSeat)
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
 local folderLegendGymFarming = AutoFarm:AddFolder("Legend Gym Farming")
 
--- Muscle King functions
-local function createMuscleKingFunction(name, position)
-    return function(Value)
-        getgenv()[name] = Value
-        if Value then
-            task.spawn(function()
-                while getgenv()[name] do
-                    local player = game.Players.LocalPlayer
-                    local character = player.Character
-                    if character and character:FindFirstChild("HumanoidRootPart") then
-                        character.HumanoidRootPart.CFrame = CFrame.new(position)
-                        task.wait(0.3)
-                        local args = {
-                            [1] = "useMachine",
-                            [2] = workspace:WaitForChild("machinesFolder"):WaitForChild(name):WaitForChild("interactSeat")
-                        }
-                        game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                    end
-                    task.wait(0.05)
-                end
-            end)
-        end
-    end
-end
-
-folderMuscleKingFarming:AddToggle("Auto Muscle King Lift", createMuscleKingFunction("Muscle King Lift", Vector3.new(-8772.97266, 24.4272194, -5638.37402)))
-folderMuscleKingFarming:AddToggle("Auto Muscle King Boulder", createMuscleKingFunction("King Boulder", Vector3.new(-8986.61621, 30.0510483, -5647.14404)))
-folderMuscleKingFarming:AddToggle("Auto Muscle King Squat", createMuscleKingFunction("Muscle King Squat", Vector3.new(-8760.77051, 63.8689613, -6088.8042)))
-folderMuscleKingFarming:AddToggle("Auto Muscle King Bench", createMuscleKingFunction("Muscle King Bench", Vector3.new(-8582.58887, 41.7540054, -6051.01318)))
-
-local function createLegendFunction(name, position)
-    return function(Value)
-        getgenv()[name] = Value
-        if Value then
-            task.spawn(function()
-                while getgenv()[name] do
-                    local player = game.Players.LocalPlayer
-                    local character = player.Character
-                    if character and character:FindFirstChild("HumanoidRootPart") then
-                        character.HumanoidRootPart.CFrame = CFrame.new(position)
-                        task.wait(0.3)
-                        local args = {
-                            [1] = "useMachine",
-                            [2] = workspace:WaitForChild("machinesFolder"):WaitForChild(name):WaitForChild("interactSeat")
-                        }
-                        game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("machineInteractRemote"):InvokeServer(unpack(args))
-                    end
-                    task.wait(0.05)
-                end
-            end)
-        end
-    end
-end
-
-folderLegendGymFarming:AddToggle("Auto Legend Lift", createLegendFunction("Legends Lift", Vector3.new(4551.51514, 997.727234, -4018.90186)))
-folderLegendGymFarming:AddToggle("Auto Legend Press", createLegendFunction("Legends Press", Vector3.new(4100.08154, 1016.20416, -3800.4187)))
-
--- Auto Rep Toggle
-local autoRepToggle = false
-AutoFarm:AddSwitch("Auto Rep", function(State)
-    autoRepToggle = State
+-- Auto Legend Lift Toggle
+local autoLegendLift = false
+folderLegendGymFarming:AddSwitch("Auto Legend Lift", function(State)
+    autoLegendLift = State
     if State then
         task.spawn(function()
-            while autoRepToggle do
-                game:GetService("Players").LocalPlayer:WaitForChild("muscleEvent"):FireServer("rep")
+            while autoLegendLift do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(4551.51514, 997.727234, -4018.90186))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Legends Lift"].interactSeat)
                 task.wait(0.1)
             end
         end)
     end
 end)
 
--- Tools section
-AutoFarm:AddLabel("Tools")
-
--- Auto Equip Weight Toggle
-local equipWeightToggle = false
-AutoFarm:AddSwitch("Auto Equip Weight", function(State)
-    equipWeightToggle = State
+-- Auto Legend Press Toggle
+local autoLegendPress = false
+folderLegendGymFarming:AddSwitch("Auto Legend Press", function(State)
+    autoLegendPress = State
     if State then
         task.spawn(function()
-            while equipWeightToggle do
-                local weightTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
-                if weightTool then
-                    weightTool.Parent = game.Players.LocalPlayer.Character
-                end
-                task.wait(0.1)
-            end
-        end)
-    end
-end)
-
--- Auto Equip Pushups Toggle
-local equipPushupsToggle = false
-AutoFarm:AddSwitch("Auto Equip Pushups", function(State)
-    equipPushupsToggle = State
-    if State then
-        task.spawn(function()
-            while equipPushupsToggle do
-                local pushupsTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Pushups")
-                if pushupsTool then
-                    pushupsTool.Parent = game.Players.LocalPlayer.Character
-                end
-                task.wait(0.1)
-            end
-        end)
-    end
-end)
-
--- Auto Equip Situps Toggle
-local equipSitupsToggle = false
-AutoFarm:AddSwitch("Auto Equip Situps", function(State)
-    equipSitupsToggle = State
-    if State then
-        task.spawn(function()
-            while equipSitupsToggle do
-                local situpsTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Situps")
-                if situpsTool then
-                    situpsTool.Parent = game.Players.LocalPlayer.Character
-                end
-                task.wait(0.1)
-            end
-        end)
-    end
-end)
-
--- Auto Equip Handstand Toggle
-local equipHandstandToggle = false
-AutoFarm:AddSwitch("Auto Equip Handstand", function(State)
-    equipHandstandToggle = State
-    if State then
-        task.spawn(function()
-            while equipHandstandToggle do
-                local handstandTool = game.Players.LocalPlayer.Backpack:FindFirstChild("Handstand")
-                if handstandTool then
-                    handstandTool.Parent = game.Players.LocalPlayer.Character
-                end
+            while autoLegendPress do
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(4100.08154, 1016.20416, -3800.4187))
+                game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Legends Press"].interactSeat)
                 task.wait(0.1)
             end
         end)
