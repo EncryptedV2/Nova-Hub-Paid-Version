@@ -1,7 +1,7 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library/main/Library", true))()
 
 local window = library:AddWindow("Nova Hub", {
-    main_color = Color3.fromRGB(247, 241, 141), -- Main Color
+    main_color = Color3.fromRGB(0, 0, 0), -- Main Color
     min_size = Vector2.new(610, 550), -- Size of the GUI
     can_resize = false, -- Allow resizing
 })
@@ -238,26 +238,29 @@ Killer:AddSwitch("Auto Good Karma", function(bool)
 
     while autoGoodKarma do
         local player = game.Players.LocalPlayer
+        local playerChar = player.Character
 
-        for _, target in ipairs(game.Players:GetPlayers()) do
-            if target ~= player and not playerWhitelist[target.Name] then
-                local targetStats = target:FindFirstChild("leaderstats")
-                local evilKarma = targetStats and targetStats:FindFirstChild("evilKarma") and targetStats.evilKarma.Value or 0
-                local goodKarma = targetStats and targetStats:FindFirstChild("goodKarma") and targetStats.goodKarma.Value or 0
+        if playerChar then
+            for _, target in ipairs(game.Players:GetPlayers()) do
+                if target ~= player then
+                    local targetStats = target:FindFirstChild("leaderstats")
+                    local evilKarma = targetStats and targetStats:FindFirstChild("evilKarma")
+                    local goodKarma = targetStats and targetStats:FindFirstChild("goodKarma")
 
-                if evilKarma > goodKarma then
-                    local targetChar = target.Character
-                    local rootPart = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+                    if evilKarma and goodKarma and evilKarma.Value > goodKarma.Value then
+                        local targetChar = target.Character
+                        local rootPart = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
 
-                    if rootPart then
-                        local rightHand = player.Character and player.Character:FindFirstChild("RightHand")
-                        local leftHand = player.Character and player.Character:FindFirstChild("LeftHand")
+                        if rootPart then
+                            local rightHand = playerChar:FindFirstChild("RightHand")
+                            local leftHand = playerChar:FindFirstChild("LeftHand")
 
-                        if rightHand and leftHand then
-                            firetouchinterest(rightHand, rootPart, 1)
-                            firetouchinterest(leftHand, rootPart, 1)
-                            firetouchinterest(rightHand, rootPart, 0)
-                            firetouchinterest(leftHand, rootPart, 0)
+                            if rightHand and leftHand then
+                                firetouchinterest(rightHand, rootPart, 1)
+                                firetouchinterest(leftHand, rootPart, 1)
+                                firetouchinterest(rightHand, rootPart, 0)
+                                firetouchinterest(leftHand, rootPart, 0)
+                            end
                         end
                     end
                 end
@@ -273,26 +276,29 @@ Killer:AddSwitch("Auto Bad Karma", function(bool)
 
     while autoBadKarma do
         local player = game.Players.LocalPlayer
+        local playerChar = player.Character
 
-        for _, target in ipairs(game.Players:GetPlayers()) do
-            if target ~= player and not playerWhitelist[target.Name] then
-                local targetStats = target:FindFirstChild("leaderstats")
-                local evilKarma = targetStats and targetStats:FindFirstChild("evilKarma") and targetStats.evilKarma.Value or 0
-                local goodKarma = targetStats and targetStats:FindFirstChild("goodKarma") and targetStats.goodKarma.Value or 0
+        if playerChar then
+            for _, target in ipairs(game.Players:GetPlayers()) do
+                if target ~= player then
+                    local targetStats = target:FindFirstChild("leaderstats")
+                    local evilKarma = targetStats and targetStats:FindFirstChild("evilKarma")
+                    local goodKarma = targetStats and targetStats:FindFirstChild("goodKarma")
 
-                if goodKarma > evilKarma then
-                    local targetChar = target.Character
-                    local rootPart = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+                    if evilKarma and goodKarma and goodKarma.Value > evilKarma.Value then
+                        local targetChar = target.Character
+                        local rootPart = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
 
-                    if rootPart then
-                        local rightHand = player.Character and player.Character:FindFirstChild("RightHand")
-                        local leftHand = player.Character and player.Character:FindFirstChild("LeftHand")
+                        if rootPart then
+                            local rightHand = playerChar:FindFirstChild("RightHand")
+                            local leftHand = playerChar:FindFirstChild("LeftHand")
 
-                        if rightHand and leftHand then
-                            firetouchinterest(rightHand, rootPart, 1)
-                            firetouchinterest(leftHand, rootPart, 1)
-                            firetouchinterest(rightHand, rootPart, 0)
-                            firetouchinterest(leftHand, rootPart, 0)
+                            if rightHand and leftHand then
+                                firetouchinterest(rightHand, rootPart, 1)
+                                firetouchinterest(leftHand, rootPart, 1)
+                                firetouchinterest(rightHand, rootPart, 0)
+                                firetouchinterest(leftHand, rootPart, 0)
+                            end
                         end
                     end
                 end
@@ -772,7 +778,7 @@ end)
 
 local Misc = window:AddTab("Misc")
 
-local foldertp = features:AddFolder(Teleport)
+local foldertp = Misc:AddFolder(Teleport)
 
 foldertp:AddButton("Tiny Island", function()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-31.8626194, 6.0588026, 2087.88672)
