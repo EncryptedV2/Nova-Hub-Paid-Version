@@ -2,7 +2,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memej
 
 local window = library:AddWindow("Nova Hub | Paid Version V2", {
     main_color = Color3.fromRGB(0, 0, 0),
-    min_size = Vector2.new(630, 550),
+    min_size = Vector2.new(660, 550),
     can_resize = false,
 })
 
@@ -489,14 +489,16 @@ end)
 
 local OpThings = window:AddTab("Op Things")
 
-local switch = OpThings:AddSwitch("Fast Rebirth", function(bool)
-    if bool then
-        task.spawn(function()
+Killer:AddSwitch("Fast Rebirth", function(bool)
+    fastRebirth = bool
+
+    if fastRebirth then
+        spawn(function()
             local a = game:GetService("ReplicatedStorage")
             local b = game:GetService("Players")
             local c = b.LocalPlayer
 
-            local d = function()
+            local d = function(e)
                 local f = c.petsFolder
                 for g, h in pairs(f:GetChildren()) do
                     if h:IsA("Folder") then
@@ -505,12 +507,12 @@ local switch = OpThings:AddSwitch("Fast Rebirth", function(bool)
                         end
                     end
                 end
-                task.wait(0.1)
+                task.wait(.1)
             end
 
             local k = function(l)
                 d()
-                task.wait(0.01)
+                task.wait(.01)
                 for m, n in pairs(c.petsFolder.Unique:GetChildren()) do
                     if n.Name == l then
                         a.rEvents.equipPetEvent:FireServer("equipPet", n)
@@ -534,11 +536,11 @@ local switch = OpThings:AddSwitch("Fast Rebirth", function(bool)
             local t = function()
                 local u = game:GetService("VirtualInputManager")
                 u:SendKeyEvent(true, "E", false, game)
-                task.wait(0.1)
+                task.wait(.1)
                 u:SendKeyEvent(false, "E", false, game)
             end
 
-            while switch:GetState() do
+            while fastRebirth do
                 local v = c.leaderstats.Rebirths.Value
                 local w = 10000 + (5000 * v)
                 if c.ultimatesFolder:FindFirstChild("Golden Rebirth") then
@@ -547,7 +549,7 @@ local switch = OpThings:AddSwitch("Fast Rebirth", function(bool)
                 end
 
                 d()
-                task.wait(0.1)
+                task.wait(.1)
                 k("Swift Samurai")
 
                 while c.leaderstats.Strength.Value < w do
@@ -558,14 +560,14 @@ local switch = OpThings:AddSwitch("Fast Rebirth", function(bool)
                 end
 
                 d()
-                task.wait(0.1)
+                task.wait(.1)
                 k("Tribal Overlord")
 
                 local z = o("Jungle Bar Lift")
                 if z and z:FindFirstChild("interactSeat") then
                     c.Character.HumanoidRootPart.CFrame = z.interactSeat.CFrame * CFrame.new(0, 3, 0)
                     repeat
-                        task.wait(0.1)
+                        task.wait(.1)
                         t()
                     until c.Character.Humanoid.Sit
                 end
@@ -573,7 +575,7 @@ local switch = OpThings:AddSwitch("Fast Rebirth", function(bool)
                 local A = c.leaderstats.Rebirths.Value
                 repeat
                     a.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-                    task.wait(0.1)
+                    task.wait(.1)
                 until c.leaderstats.Rebirths.Value > A
 
                 task.wait()
