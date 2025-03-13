@@ -489,7 +489,7 @@ end)
 
 local OpThings = window:AddTab("Op Things")
 
-Killer:AddSwitch("Fast Rebirth", function(bool)
+OpThings:AddSwitch("Fast Rebirth", function(bool)
     fastRebirth = bool
 
     if fastRebirth then
