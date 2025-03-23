@@ -1,19 +1,1 @@
-local Whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/EncryptedV2/Nova-Hub-Paid-Version/refs/heads/main/Whitelisted%20Players"))()
 
-local Player = game:GetService("Players").LocalPlayer
-local Username = Player.Name
-
-local isWhitelisted = false
-for _, v in pairs(Whitelist) do
-    if v == Username then
-        isWhitelisted = true
-        break
-    end
-end
-
-if isWhitelisted then
-    print("Access Granted. Welcome,", Username)
-else
-    print("Access Denied. You are not whitelisted.")
-    Player:Kick("You are not whitelisted.")
-end
